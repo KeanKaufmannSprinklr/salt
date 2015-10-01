@@ -32,7 +32,7 @@ public class NotifierHelperTest {
 		ArrayList<Listener> listenerList = new ArrayList<>();
 		assertEquals(0, NotifierHelper.getListener(listenerList).size());
 
-		NotifierHelper.addListener(listenerList, null);
+		NotifierHelper.addListener(listenerList, (Listener)null);
 		assertEquals(0, NotifierHelper.getListener(listenerList).size());
 
 		NotifierHelper.addListener(listenerList, listener1);

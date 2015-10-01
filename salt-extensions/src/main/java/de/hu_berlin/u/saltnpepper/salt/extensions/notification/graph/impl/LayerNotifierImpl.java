@@ -31,6 +31,12 @@ public class LayerNotifierImpl<N extends Node, R extends Relation<N, N>> extends
 	public synchronized void addListener(Listener listener) {
 		listenerList = NotifierHelper.addListener(listenerList, listener);
 	}
+	
+	/** {@inheritDoc} **/
+	@Override
+	public void addListener(Collection<Listener> listener) {
+		listenerList = NotifierHelper.addListener(listenerList, listener);
+	}
 
 	/** {@inheritDoc} **/
 	@Override

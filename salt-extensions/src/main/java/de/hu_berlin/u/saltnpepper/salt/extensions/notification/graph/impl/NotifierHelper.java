@@ -1,6 +1,7 @@
 package de.hu_berlin.u.saltnpepper.salt.extensions.notification.graph.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +29,17 @@ public class NotifierHelper {
 				listenerList = new ArrayList<Listener>();
 			}
 			listenerList.add(listener);
+		}
+		return (listenerList);
+	}
+
+	/** @see Notifier#addListener(Listener) */
+	public static List<Listener> addListener(List<Listener> listenerList, Collection<Listener> newListeners) {
+		if (newListeners != null) {
+			if (listenerList == null) {
+				listenerList = new ArrayList<Listener>();
+			}
+			listenerList.addAll(newListeners);
 		}
 		return (listenerList);
 	}

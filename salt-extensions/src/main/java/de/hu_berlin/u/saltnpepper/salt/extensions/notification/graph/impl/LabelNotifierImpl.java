@@ -26,6 +26,12 @@ public class LabelNotifierImpl extends LabelImpl implements Label, Notifier {
 	public synchronized void addListener(Listener listener) {
 		listenerList = NotifierHelper.addListener(listenerList, listener);
 	}
+	
+	/** {@inheritDoc} **/
+	@Override
+	public void addListener(Collection<Listener> listener) {
+		listenerList = NotifierHelper.addListener(listenerList, listener);
+	}
 
 	/** {@inheritDoc} **/
 	@Override

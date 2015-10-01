@@ -1,5 +1,6 @@
 package de.hu_berlin.u.saltnpepper.salt.extensions.notification.graph;
 
+import java.util.Collection;
 import java.util.List;
 
 import de.hu_berlin.u.saltnpepper.salt.extensions.notification.Listener;
@@ -28,6 +29,14 @@ public interface Notifier {
 	 *            to be notified
 	 */
 	public void addListener(Listener listener);
+	/**
+	 * Adds a set of new listener, which then will be notified about a change in this
+	 * object.
+	 * 
+	 * @param listener
+	 *            to be notified
+	 */
+	public void addListener(Collection<Listener> listener);
 
 	/**
 	 * Removes a listener, which won't be notified about a change in this object

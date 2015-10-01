@@ -31,6 +31,12 @@ public class RelationNotifierImpl<S extends Node, T extends Node> extends Relati
 
 	/** {@inheritDoc} **/
 	@Override
+	public void addListener(Collection<Listener> listener) {
+		listenerList = NotifierHelper.addListener(listenerList, listener);
+	}
+
+	/** {@inheritDoc} **/
+	@Override
 	public synchronized void removeListener(Listener listener) {
 		listenerList = NotifierHelper.removeListener(listenerList, listener);
 	}

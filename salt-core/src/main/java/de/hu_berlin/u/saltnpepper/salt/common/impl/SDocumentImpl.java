@@ -17,19 +17,37 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
+import javax.swing.text.Document;
+
 import org.eclipse.emf.common.util.URI;
 
 import de.hu_berlin.u.saltnpepper.graph.Graph;
+import de.hu_berlin.u.saltnpepper.graph.Node;
 import de.hu_berlin.u.saltnpepper.salt.SaltFactory;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocument;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocumentGraph;
 import de.hu_berlin.u.saltnpepper.salt.core.SFeature;
+import de.hu_berlin.u.saltnpepper.salt.core.SNode;
 import de.hu_berlin.u.saltnpepper.salt.core.impl.SNodeImpl;
 import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 
 @SuppressWarnings("serial")
 public class SDocumentImpl extends SNodeImpl implements SDocument {
 
+	public SDocumentImpl() {
+	}
+	/**
+	 * Initializes an object of type {@link Document}. If {@link #delegate} is not
+	 * null, all functions of this method are delegated to the delegate object.
+	 * Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SDocumentImpl(Node delegate) {
+		super(delegate);
+	}
+	
 	/** {@inheritDoc} **/
 	@Override
 	public SDocumentGraph getDocumentGraph() {

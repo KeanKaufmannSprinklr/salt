@@ -1,6 +1,8 @@
 package de.hu_berlin.u.saltnpepper.salt.core.impl;
 
 import de.hu_berlin.u.saltnpepper.graph.Graph;
+import de.hu_berlin.u.saltnpepper.graph.Node;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,12 +22,27 @@ import de.hu_berlin.u.saltnpepper.salt.core.SRelation;
 import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltInvalidModelException;
 import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 import de.hu_berlin.u.saltnpepper.salt.util.internal.SAnnotationContainerHelper;
+
 import java.util.Collections;
 import java.util.HashSet;
 
 @SuppressWarnings("serial")
 public class SNodeImpl extends NodeImpl implements SNode {
 
+	public SNodeImpl() {
+	}
+	/**
+	 * Initializes an object of type {@link SNode}. If {@link #delegate} is not
+	 * null, all functions of this method are delegated to the delegate object.
+	 * Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SNodeImpl(Node delegate) {
+		super(delegate);
+	}
+	
 	/**
 	 * {@inheritDoc SNode#getOutgoingSRelations()}
 	 */

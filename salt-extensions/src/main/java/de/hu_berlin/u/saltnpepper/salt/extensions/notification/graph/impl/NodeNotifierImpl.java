@@ -12,6 +12,7 @@ import de.hu_berlin.u.saltnpepper.salt.extensions.notification.graph.Notifier;
 
 /**
  * Notifies all listeners about adding or removing a label.
+ * 
  * @author florian
  *
  */
@@ -32,7 +33,7 @@ public class NodeNotifierImpl extends NodeImpl implements Node, Notifier {
 	public synchronized void addListener(Listener listener) {
 		listenerList = NotifierHelper.addListener(listenerList, listener);
 	}
-	
+
 	/** {@inheritDoc} **/
 	@Override
 	public void addListener(Collection<Listener> listener) {
@@ -44,8 +45,9 @@ public class NodeNotifierImpl extends NodeImpl implements Node, Notifier {
 	public synchronized void removeListener(Listener listener) {
 		listenerList = NotifierHelper.removeListener(listenerList, listener);
 	}
+
 	// ==========================================< listener list
-	
+
 	// ==========================================> label handling
 	/**
 	 * {@inheritDoc} Notifies all registered listeners.
@@ -63,17 +65,14 @@ public class NodeNotifierImpl extends NodeImpl implements Node, Notifier {
 	 **/
 	@Override
 	public void removeLabel(String qName) {
+		System.out.println("remove 1");
+		
+		for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
+			System.out.println(ste);
+		}
+		
 		Label oldValue = getLabel(qName);
 		super.removeLabel(qName);
-		if (listenerList != null) {
-			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.NODE_LABELS, oldValue, null, this);
-		}
-	}
-
-	@Override
-	public void removeLabel(String namespace, String name) {
-		Label oldValue = getLabel(namespace, name);
-		super.removeLabel(namespace, name);
 		if (listenerList != null) {
 			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.NODE_LABELS, oldValue, null, this);
 		}

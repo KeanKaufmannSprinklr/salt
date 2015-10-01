@@ -68,16 +68,7 @@ public class LayerNotifierImpl<N extends Node, R extends Relation<N, N>> extends
 			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.LAYER_LABELS, oldValue, null, this);
 		}
 	}
-
-	@Override
-	public void removeLabel(String namespace, String name) {
-		Label oldValue = getLabel(namespace, name);
-		super.removeLabel(namespace, name);
-		if (listenerList != null) {
-			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.LAYER_LABELS, oldValue, null, this);
-		}
-	}
-
+	
 	/**
 	 * {@inheritDoc} Notifies all registered listeners.
 	 **/

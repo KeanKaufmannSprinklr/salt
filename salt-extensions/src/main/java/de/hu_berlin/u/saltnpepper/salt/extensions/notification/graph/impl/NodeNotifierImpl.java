@@ -65,12 +65,6 @@ public class NodeNotifierImpl extends NodeImpl implements Node, Notifier {
 	 **/
 	@Override
 	public void removeLabel(String qName) {
-		System.out.println("remove 1");
-		
-		for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
-			System.out.println(ste);
-		}
-		
 		Label oldValue = getLabel(qName);
 		super.removeLabel(qName);
 		if (listenerList != null) {

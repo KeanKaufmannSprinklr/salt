@@ -26,12 +26,7 @@ public class SampleGraphTest implements Listener {
 		SaltFactory.setFactory(new SaltNotificationFactory());
 		factory.addListener(this);
 		SDocument doc= SaltFactory.createSDocument();
-		SampleGenerator.createSyntaxStructure(doc);
-		
-		System.out.println("------------------------------- HALLO");
-		for (SToken tok: doc.getDocumentGraph().getTokens()){
-			System.out.println(tok.getId());
-		}
+		SampleGenerator.createSyntaxStructure(doc);		
 	}
 
 	@Override

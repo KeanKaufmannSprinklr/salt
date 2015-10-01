@@ -15,6 +15,12 @@ import com.google.common.collect.Multimap;
 
 import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltException;
 
+/**
+ * 
+ * @author florian
+ * @author Thomas Krause
+ *
+ */
 @SuppressWarnings("serial")
 public class IndexMgrImpl implements IndexMgr {
 	private final ReadWriteLock lock = new ReentrantReadWriteLock();

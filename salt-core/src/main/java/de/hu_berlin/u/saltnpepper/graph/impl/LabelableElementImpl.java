@@ -23,12 +23,48 @@ import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
  */
 @SuppressWarnings("serial")
 public abstract class LabelableElementImpl implements LabelableElement, Serializable {
+
+	public LabelableElementImpl() {
+	}
+
+	/**
+	 * A delegate object of the same type. If {@link #delegate} is not null, all
+	 * functions of this method are delegated to the delegate object. Setting
+	 * {@link #delegate} makes this object to a container.
+	 **/
+	protected LabelableElement delegate = null;
+
+	/**
+	 * Returns the delegate object. If {@link #delegate} is not null, all
+	 * functions of this method are delegated to the delegate object. Setting
+	 * {@link #delegate} makes this object to a container.
+	 * 
+	 * @return the delegate object
+	 */
+	protected LabelableElement getDelegate() {
+		return (delegate);
+	}
+
+	/**
+	 * Initializes a new object and sets an internal delegatee. This means, all
+	 * method invocations are passed to the delegatee.
+	 * 
+	 * @param delegatee
+	 *            object to pass method invocations to.
+	 */
+	public LabelableElementImpl(LabelableElement delegatee) {
+		this.delegate = delegatee;
+	}
+
 	/** internal set of all labels **/
 	private Map<String, Label> labels = null;
 
 	/** {@inheritDoc LabelableElement#getLabels()} **/
 	@Override
 	public Collection<Label> getLabels() {
+		if (getDelegate() != null) {
+			return (getDelegate().getLabels());
+		}
 		Collection<Label> retVal = null;
 		if (labels != null) {
 			retVal = labels.values();
@@ -39,6 +75,9 @@ public abstract class LabelableElementImpl implements LabelableElement, Serializ
 	/** {@inheritDoc LabelableElement#getLabel(String)} **/
 	@Override
 	public Label getLabel(String qName) {
+		if (getDelegate() != null) {
+			return (getDelegate().getLabel(qName));
+		}
 		if (labels != null) {
 			return (labels.get(qName));
 		} else {
@@ -49,21 +88,27 @@ public abstract class LabelableElementImpl implements LabelableElement, Serializ
 	/** {@inheritedDoc LabelableElement#getLabel(String, String)} **/
 	@Override
 	public Label getLabel(String namespace, String name) {
+		if (getDelegate() != null) {
+			return (getDelegate().getLabel(namespace, name));
+		}
 		String qName = SaltUtil.createQName(namespace, name);
 		return (getLabel(qName));
 	}
 
 	/** {@inheritDoc LabelableElement#getLabelsByNamespace(String)} **/
 	@Override
-	public Set<Label> getLabelsByNamespace(String ns) {
+	public Set<Label> getLabelsByNamespace(String namespace) {
+		if (getDelegate() != null) {
+			return (getDelegate().getLabelsByNamespace(namespace));
+		}
 		Set<Label> retVal = new HashSet<Label>();
 		if (labels != null) {
 			for (Label label : labels.values()) {
-				if (ns == null) {
+				if (namespace == null) {
 					if (label.getNamespace() == null) {
 						retVal.add(label);
 					}
-				} else if (ns.equals(label.getNamespace())) {
+				} else if (namespace.equals(label.getNamespace())) {
 					retVal.add(label);
 				}
 			}
@@ -74,11 +119,15 @@ public abstract class LabelableElementImpl implements LabelableElement, Serializ
 	/** {@inheritDoc} */
 	@Override
 	public void addLabel(Label label) {
-		if (label != null) {
-			if (label instanceof LabelImpl) {
-				((LabelImpl) label).basicSetLabelableElement(this);
+		if (getDelegate() != null) {
+			getDelegate().addLabel(label);
+		} else {
+			if (label != null) {
+				if (label instanceof LabelImpl) {
+					((LabelImpl) label).basicSetLabelableElement(this);
+				}
+				basicAddLabel(label);
 			}
-			basicAddLabel(label);
 		}
 	}
 
@@ -108,34 +157,42 @@ public abstract class LabelableElementImpl implements LabelableElement, Serializ
 	 *            label to be inserted
 	 */
 	public void basicAddLabel(Label label) {
-		if (label != null) {
-			if ((label.getName() == null) || (label.getName().isEmpty())) {
-				throw new SaltInsertionException(this, label, "Cannot add a label object without a name.");
-			}
-			if (labels == null) {
-				labels = new HashMap<String, Label>();
-			}
-			String qName = SaltUtil.createQName(label.getNamespace(), label.getName());
-			if (labels.containsKey(qName)) {
-				if (this instanceof IdentifiableElement) {
-					throw new SaltInsertionException(this, label, " Because an id already exists: " + labels.get(qName) + ".");
-				} else {
-					throw new SaltInsertionException(this, label, "Cannot add the given label object, because a label with this QName already exists: " + label.getQName());
+		if (getDelegate() != null && getDelegate() instanceof LabelableElementImpl) {
+			((LabelableElementImpl) getDelegate()).basicAddLabel(label);
+		} else {
+			if (label != null) {
+				if ((label.getName() == null) || (label.getName().isEmpty())) {
+					throw new SaltInsertionException(this, label, "Cannot add a label object without a name.");
 				}
+				if (labels == null) {
+					labels = new HashMap<String, Label>();
+				}
+				String qName = SaltUtil.createQName(label.getNamespace(), label.getName());
+				if (labels.containsKey(qName)) {
+					if (this instanceof IdentifiableElement) {
+						throw new SaltInsertionException(this, label, " Because an id already exists: " + labels.get(qName) + ".");
+					} else {
+						throw new SaltInsertionException(this, label, "Cannot add the given label object, because a label with this QName already exists: " + label.getQName());
+					}
+				}
+				labels.put(qName, label);
 			}
-			labels.put(qName, label);
 		}
 	}
 
 	/** {@inheritDoc LabelableElement#removeLabel(String)} **/
 	@Override
 	public void removeLabel(String qName) {
-		if (qName != null) {
-			Label label = getLabel(qName);
-			if (label instanceof LabelImpl) {
-				((LabelImpl) label).setContainer(null);
+		if (getDelegate() != null) {
+			getDelegate().removeLabel(qName);
+		} else {
+			if (qName != null) {
+				Label label = getLabel(qName);
+				if (label instanceof LabelImpl) {
+					((LabelImpl) label).setContainer(null);
+				}
+				basicRemoveLabel(qName);
 			}
-			basicRemoveLabel(qName);
 		}
 	}
 
@@ -165,35 +222,55 @@ public abstract class LabelableElementImpl implements LabelableElement, Serializ
 	 *            label to be inserted
 	 */
 	public void basicRemoveLabel(String qName) {
-		if (qName != null) {
-			labels.remove(qName);
+		if (getDelegate() != null && getDelegate() instanceof LabelableElementImpl) {
+			((LabelableElementImpl) getDelegate()).basicRemoveLabel(qName);
+		} else {
+			if (qName != null) {
+				labels.remove(qName);
+			}
 		}
 	}
 
 	/** {@inheritDoc LabelableElement#removeLabel(String, String))} **/
 	@Override
 	public void removeLabel(String namespace, String name) {
-		removeLabel(SaltUtil.createQName(namespace, name));
+		if (getDelegate() != null) {
+			getDelegate().removeLabel(namespace, name);
+		} else {
+			removeLabel(SaltUtil.createQName(namespace, name));
+		}
 	}
 
 	/** {@inheritDoc LabelableElement#removeAll()} **/
 	@Override
 	public void removeAll() {
-		labels = new HashMap<String, Label>();
+		if (getDelegate() != null) {
+			getDelegate().removeAll();
+		} else {
+			labels = new HashMap<String, Label>();
+		}
 	}
 
 	/** {@inheritDoc LabelableElement#containsLabel(String)} **/
 	@Override
 	public boolean containsLabel(String qName) {
+		if (getDelegate() != null) {
+			return (getDelegate().containsLabel(qName));
+		}
 		return (labels.containsKey(qName));
 	}
 
 	/** {@inheritDoc LabelableElement#sizeLabels()} **/
 	@Override
 	public Integer sizeLabels() {
-		if (labels != null) {
-			return (labels.values().size());
+		if (getDelegate() != null) {
+			return (getDelegate().sizeLabels());
+		} else {
+
+			if (labels != null) {
+				return (labels.values().size());
+			}
+			return (0);
 		}
-		return (0);
 	}
 }

@@ -23,15 +23,6 @@ import java.util.Set;
 public interface Relation<S extends Node, T extends Node> extends IdentifiableElement {
 
 	/**
-	 * Returns the delegate object. If {@link #delegate} is not null, all
-	 * functions of this method are delegated to the delegate object. Setting
-	 * {@link #delegate} makes this object to a container.
-	 * 
-	 * @return the delegate object
-	 */
-	public Relation<S, T> getDelegate();
-
-	/**
 	 * Returns the source node of this relation object.
 	 * 
 	 * @return source node

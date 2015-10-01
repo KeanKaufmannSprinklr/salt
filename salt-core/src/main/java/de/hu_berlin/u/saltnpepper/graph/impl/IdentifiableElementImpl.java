@@ -9,24 +9,45 @@ import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 @SuppressWarnings("serial")
 public abstract class IdentifiableElementImpl extends LabelableElementImpl implements IdentifiableElement {
 
+	public IdentifiableElementImpl() {
+		super();
+	}
+
+	public IdentifiableElementImpl(IdentifiableElement delegatee) {
+		super(delegatee);
+	}
+
+	/** {@inheritDoc} **/
+	@Override
+	protected IdentifiableElement getDelegate() {
+		return ((IdentifiableElement) delegate);
+	}
+
 	/** internal ref to the {@link Identifier} label **/
 	private Identifier identifier = null;
 
 	/** {@inheritDoc IdentifiableElement#getIdentifier()} **/
 	@Override
 	public Identifier getIdentifier() {
+		if (getDelegate() != null) {
+			return (getDelegate().getIdentifier());
+		}
 		return (identifier);
 	}
 
 	/** {@inheritDoc IdentifiableElement#setIdentifier(Identifier)} **/
 	@Override
 	public void setIdentifier(Identifier identifier) {
-		if (identifier != null) {
-			if (getIdentifier() != null) {
-				removeLabel(SaltUtil.SALT_NAMESPACE, SaltUtil.LABEL_ID);
+		if (getDelegate() != null) {
+			getDelegate().setIdentifier(identifier);
+		} else {
+			if (identifier != null) {
+				if (getIdentifier() != null) {
+					removeLabel(SaltUtil.SALT_NAMESPACE, SaltUtil.LABEL_ID);
+				}
+				this.identifier = identifier;
+				addLabel(identifier);
 			}
-			this.identifier = identifier;
-			addLabel(identifier);
 		}
 	}
 
@@ -37,15 +58,22 @@ public abstract class IdentifiableElementImpl extends LabelableElementImpl imple
 	 **/
 	@Override
 	public void removeLabel(String qName) {
-		if (SaltUtil.LABEL_ID_QNAME.equals(qName)) {
-			identifier = null;
+		if (getDelegate() != null) {
+			getDelegate().setIdentifier(identifier);
+		} else {
+			if (SaltUtil.LABEL_ID_QNAME.equals(qName)) {
+				identifier = null;
+			}
+			super.removeLabel(qName);
 		}
-		super.removeLabel(qName);
 	}
 
 	/** {@inheritDoc IdentifiableElement#getId()} **/
 	@Override
 	public String getId() {
+		if (getDelegate() != null) {
+			return (getDelegate().getId());
+		}
 		if (getIdentifier() != null) {
 			return (getIdentifier().getId());
 		} else {
@@ -56,14 +84,21 @@ public abstract class IdentifiableElementImpl extends LabelableElementImpl imple
 	/** {@inheritDoc IdentifiableElement#setId(String)} **/
 	@Override
 	public void setId(String id) {
-		if ((id != null) && (!id.isEmpty())) {
-			Identifier identifier = GraphFactory.createIdentifier(this, id);
-			setIdentifier(identifier);
+		if (getDelegate() != null) {
+			getDelegate().setId(id);
+		} else {
+			if ((id != null) && (!id.isEmpty())) {
+				Identifier identifier = GraphFactory.createIdentifier(this, id);
+				setIdentifier(identifier);
+			}
 		}
 	}
 
 	@Override
 	public String toString() {
+		if (getDelegate() != null) {
+			return (delegate.toString());
+		}
 		StringBuilder str = new StringBuilder();
 		str.append(getClass().getSimpleName());
 		str.append("(");

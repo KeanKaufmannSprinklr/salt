@@ -26,21 +26,15 @@ public class RelationImpl<S extends Node, T extends Node> extends IdentifiableEl
 	 *            delegate object of the same type.
 	 */
 	public RelationImpl(Relation<S, T> delegate) {
-		this.delegate = delegate;
+		super(delegate);
 	}
 
 	/**
-	 * A delegate object of the same type. If {@link #delegate} is not null, all
-	 * functions of this method are delegated to the delegate object. Setting
-	 * {@link #delegate} makes this object to a container.
-	 **/
-	protected Relation<S, T> delegate = null;
-
-	/**
-	 * {@inheritDoc Relation#getDelegate()}
+	 * {@inheritDoc}
 	 */
-	public Relation<S, T> getDelegate() {
-		return (delegate);
+	@Override
+	protected Relation<S, T> getDelegate() {
+		return ((Relation<S, T>) super.getDelegate());
 	}
 
 	/** source node of this relation. **/
@@ -50,6 +44,9 @@ public class RelationImpl<S extends Node, T extends Node> extends IdentifiableEl
 	 * {@inheritDoc Relation#getSource()}
 	 */
 	public S getSource() {
+		if (getDelegate() != null) {
+			return (getDelegate().getSource());
+		}
 		return source;
 	}
 
@@ -58,11 +55,15 @@ public class RelationImpl<S extends Node, T extends Node> extends IdentifiableEl
 	 * change of the source.
 	 */
 	public void setSource(S source) {
-		S oldValue = getSource();
-		this.source = source;
-		// notify graph about change of target
-		if (getGraph() != null && getGraph() instanceof GraphImpl) {
-			((GraphImpl) getGraph()).update(oldValue, this, UPDATE_TYPE.RELATION_SOURCE);
+		if (getDelegate() != null) {
+			getDelegate().setSource(source);
+		} else {
+			S oldValue = getSource();
+			this.source = source;
+			// notify graph about change of target
+			if (getGraph() != null && getGraph() instanceof GraphImpl) {
+				((GraphImpl) getGraph()).update(oldValue, this, UPDATE_TYPE.RELATION_SOURCE);
+			}
 		}
 	}
 
@@ -73,6 +74,9 @@ public class RelationImpl<S extends Node, T extends Node> extends IdentifiableEl
 	 * {@inheritDoc Relation#getTarget()}
 	 */
 	public T getTarget() {
+		if (getDelegate() != null) {
+			return (getDelegate().getTarget());
+		}
 		return target;
 	}
 
@@ -81,11 +85,15 @@ public class RelationImpl<S extends Node, T extends Node> extends IdentifiableEl
 	 * change of the target.
 	 */
 	public void setTarget(T target) {
-		T oldValue = this.getTarget();
-		this.target = target;
-		// notify graph about change of target
-		if (getGraph() != null && getGraph() instanceof GraphImpl) {
-			((GraphImpl) getGraph()).update(oldValue, this, UPDATE_TYPE.RELATION_TARGET);
+		if (getDelegate() != null) {
+			getDelegate().setSource(source);
+		} else {
+			T oldValue = this.getTarget();
+			this.target = target;
+			// notify graph about change of target
+			if (getGraph() != null && getGraph() instanceof GraphImpl) {
+				((GraphImpl) getGraph()).update(oldValue, this, UPDATE_TYPE.RELATION_TARGET);
+			}
 		}
 	}
 
@@ -95,17 +103,24 @@ public class RelationImpl<S extends Node, T extends Node> extends IdentifiableEl
 	/** {@inheritDoc Relation#getGraph()} **/
 	@Override
 	public Graph getGraph() {
+		if (getDelegate() != null) {
+			getDelegate().getGraph();
+		}
 		return (graph);
 	}
 
 	/** {@inheritDoc Relation#setGraph(Graph)} **/
 	@Override
 	public void setGraph(Graph graph) {
-		basicSetGraph(graph);
-		if (graph != null) {
-			graph.addRelation(this);
+		if (getDelegate() != null) {
+			getDelegate().setGraph(graph);
 		} else {
-			// TODO: remove relation from graph
+			basicSetGraph(graph);
+			if (graph != null) {
+				graph.addRelation(this);
+			} else {
+				// TODO: remove relation from graph
+			}
 		}
 	}
 
@@ -113,7 +128,7 @@ public class RelationImpl<S extends Node, T extends Node> extends IdentifiableEl
 	 * This is an internally used method. To implement a double chaining of
 	 * {@link Graph} and {@link Relation} object when an relation is inserted
 	 * into this graph and to avoid an endless invocation the insertion of an
-	 * relation is splited into the two methods {@link #setGraph(Graph)} and
+	 * relation is splitted into the two methods {@link #setGraph(Graph)} and
 	 * {@link #basicSetGraph(Graph)}. The invocation of methods is implement as
 	 * follows:
 	 * 
@@ -135,12 +150,19 @@ public class RelationImpl<S extends Node, T extends Node> extends IdentifiableEl
 	 *            graph which contains this relation
 	 */
 	protected void basicSetGraph(Graph graph) {
-		this.graph = graph;
+		if (getDelegate() != null && getDelegate() instanceof RelationImpl) {
+			((RelationImpl) getDelegate()).basicSetGraph(graph);
+		} else {
+			this.graph = graph;
+		}
 	}
 
 	/** {@inheritDoc} **/
 	@Override
 	public Set<Layer> getLayers() {
+		if (getDelegate() != null) {
+			return (getDelegate().getLayers());
+		}
 		Set<Layer> layers = new HashSet<>();
 		if (getGraph() != null) {
 			Set<Layer> allLayers = getGraph().getLayers();
@@ -158,16 +180,24 @@ public class RelationImpl<S extends Node, T extends Node> extends IdentifiableEl
 	/** {@inheritDoc} **/
 	@Override
 	public void addLayer(Layer layer) {
-		if (layer != null) {
-			layer.addRelation(this);
+		if (getDelegate() != null) {
+			getDelegate().addLayer(layer);
+		} else {
+			if (layer != null) {
+				layer.addRelation(this);
+			}
 		}
 	}
 
 	/** {@inheritDoc} **/
 	@Override
 	public void removeLayer(Layer layer) {
-		if (layer != null) {
-			layer.removeRelation(this);
+		if (getDelegate() != null) {
+			getDelegate().removeLayer(layer);
+		} else {
+			if (layer != null) {
+				layer.removeRelation(this);
+			}
 		}
 	}
 }

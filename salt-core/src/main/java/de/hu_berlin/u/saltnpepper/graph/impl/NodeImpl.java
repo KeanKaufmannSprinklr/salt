@@ -27,15 +27,8 @@ public class NodeImpl extends IdentifiableElementImpl implements Node {
 	 *            delegate object of the same type.
 	 */
 	public NodeImpl(Node delegate) {
-		this.delegate = delegate;
+		super(delegate);
 	}
-
-	/**
-	 * A delegate object of the same type. If {@link #delegate} is not null, all
-	 * functions of this method are delegated to the delegate object. Setting
-	 * {@link #delegate} makes this object to a container.
-	 **/
-	protected Node delegate = null;
 
 	/**
 	 * Returns the delegate object. If {@link #delegate} is not null, all
@@ -44,8 +37,8 @@ public class NodeImpl extends IdentifiableElementImpl implements Node {
 	 * 
 	 * @return the delegate object
 	 */
-	public Node getDelegate() {
-		return (delegate);
+	protected Node getDelegate() {
+		return ((Node) delegate);
 	}
 
 	/** container graph **/
@@ -54,18 +47,25 @@ public class NodeImpl extends IdentifiableElementImpl implements Node {
 	/** {@inheritDoc Relation#getGraph()} **/
 	@Override
 	public Graph getGraph() {
+		if (getDelegate() != null) {
+			return (getDelegate().getGraph());
+		}
 		return (graph);
 	}
 
 	/** {@inheritDoc Relation#setGraph(Graph)} **/
 	@Override
 	public void setGraph(Graph graph) {
-		if (graph != null) {
-			graph.addNode(this);
+		if (getDelegate() != null) {
+			getDelegate().setGraph(graph);
 		} else {
-			getGraph().removeNode(this);
+			if (graph != null) {
+				graph.addNode(this);
+			} else {
+				getGraph().removeNode(this);
+			}
+			basicSetGraph(graph);
 		}
-		basicSetGraph(graph);
 	}
 
 	/**
@@ -93,12 +93,19 @@ public class NodeImpl extends IdentifiableElementImpl implements Node {
 	 *            graph which contains this node
 	 */
 	protected void basicSetGraph(Graph graph) {
-		this.graph = graph;
+		if (getDelegate() != null) {
+			getDelegate().setGraph(graph);
+		} else {
+			this.graph = graph;
+		}
 	}
 
 	/** {@inheritDoc} **/
 	@Override
 	public Set<? extends Layer> getLayers() {
+		if (getDelegate() != null) {
+			return (getDelegate().getLayers());
+		}
 		Set<Layer> layers = new HashSet<>();
 		if (getGraph() != null) {
 			Set<Layer> allLayers = getGraph().getLayers();
@@ -116,16 +123,24 @@ public class NodeImpl extends IdentifiableElementImpl implements Node {
 	/** {@inheritDoc} **/
 	@Override
 	public void addLayer(Layer layer) {
-		if (layer != null) {
-			layer.addNode(this);
+		if (getDelegate() != null) {
+			getDelegate().addLayer(layer);
+		} else {
+			if (layer != null) {
+				layer.addNode(this);
+			}
 		}
 	}
 
 	/** {@inheritDoc} **/
 	@Override
 	public void removeLayer(Layer layer) {
-		if (layer != null) {
-			layer.removeNode(this);
+		if (getDelegate() != null) {
+			getDelegate().removeLayer(layer);
+		} else {
+			if (layer != null) {
+				layer.removeNode(this);
+			}
 		}
 	}
 }

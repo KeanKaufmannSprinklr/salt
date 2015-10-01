@@ -28,6 +28,7 @@ import java.util.List;
  * A new index could be created via {@link #addIndex(String, Class, Class)}.
  * 
  * @author florian
+ * @author Thomas Krause
  *
  */
 public interface IndexMgr extends Serializable {

@@ -70,6 +70,6 @@ public class LabelNotifierTest {
 	/** Checks whether the notification about name change is correct. **/
 	@Test
 	public void testNotificationAddRemoveValue() {
-		Helper.testNotificationAddRemoveValue(fixture);
+		Helper.testNotificationAddRemoveValue(fixture, GRAPH_ATTRIBUTES.LABEL_LABELS);
 	}
 }

@@ -48,7 +48,7 @@ public class NodeNotifierImpl extends NodeImpl implements Node, Notifier {
 	public void addLabel(Label label) {
 		super.addLabel(label);
 		if (listenerList != null) {
-			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.ADD, GRAPH_ATTRIBUTES.GRAPH_LABELS, null, label, this);
+			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.ADD, GRAPH_ATTRIBUTES.NODE_LABELS, null, label, this);
 		}
 	}
 
@@ -60,7 +60,7 @@ public class NodeNotifierImpl extends NodeImpl implements Node, Notifier {
 		Label oldValue = getLabel(qName);
 		super.removeLabel(qName);
 		if (listenerList != null) {
-			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.GRAPH_LABELS, oldValue, null, this);
+			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.NODE_LABELS, oldValue, null, this);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class NodeNotifierImpl extends NodeImpl implements Node, Notifier {
 		Label oldValue = getLabel(namespace, name);
 		super.removeLabel(namespace, name);
 		if (listenerList != null) {
-			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.GRAPH_LABELS, oldValue, null, this);
+			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.NODE_LABELS, oldValue, null, this);
 		}
 	}
 
@@ -81,7 +81,7 @@ public class NodeNotifierImpl extends NodeImpl implements Node, Notifier {
 		Collection<Label> oldValue = getLabels();
 		super.removeAll();
 		if (listenerList != null) {
-			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE_ALL, GRAPH_ATTRIBUTES.GRAPH_LABELS, oldValue, null, this);
+			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE_ALL, GRAPH_ATTRIBUTES.NODE_LABELS, oldValue, null, this);
 		}
 	}
 	// ==========================================< label handling

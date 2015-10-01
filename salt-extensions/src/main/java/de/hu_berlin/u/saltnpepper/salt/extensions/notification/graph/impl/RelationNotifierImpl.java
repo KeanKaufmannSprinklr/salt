@@ -45,7 +45,7 @@ public class RelationNotifierImpl<S extends Node, T extends Node> extends Relati
 	public void addLabel(Label label) {
 		super.addLabel(label);
 		if (listenerList != null) {
-			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.ADD, GRAPH_ATTRIBUTES.GRAPH_LABELS, null, label, this);
+			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.ADD, GRAPH_ATTRIBUTES.RELATION_LABELS, null, label, this);
 		}
 	}
 
@@ -57,7 +57,7 @@ public class RelationNotifierImpl<S extends Node, T extends Node> extends Relati
 		Label oldValue = getLabel(qName);
 		super.removeLabel(qName);
 		if (listenerList != null) {
-			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.GRAPH_LABELS, oldValue, null, this);
+			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.RELATION_LABELS, oldValue, null, this);
 		}
 	}
 
@@ -66,7 +66,7 @@ public class RelationNotifierImpl<S extends Node, T extends Node> extends Relati
 		Label oldValue = getLabel(namespace, name);
 		super.removeLabel(namespace, name);
 		if (listenerList != null) {
-			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.GRAPH_LABELS, oldValue, null, this);
+			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE, GRAPH_ATTRIBUTES.RELATION_LABELS, oldValue, null, this);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class RelationNotifierImpl<S extends Node, T extends Node> extends Relati
 		Collection<Label> oldValue = getLabels();
 		super.removeAll();
 		if (listenerList != null) {
-			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE_ALL, GRAPH_ATTRIBUTES.GRAPH_LABELS, oldValue, null, this);
+			NotifierHelper.notify(listenerList, Listener.NOTIFICATION_TYPE.REMOVE_ALL, GRAPH_ATTRIBUTES.RELATION_LABELS, oldValue, null, this);
 		}
 	}
 

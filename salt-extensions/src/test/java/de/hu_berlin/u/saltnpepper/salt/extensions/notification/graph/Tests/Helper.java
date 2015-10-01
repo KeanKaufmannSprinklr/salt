@@ -26,7 +26,7 @@ public class Helper {
 
 	/** Checks whether the notification about name change is correct. **/
 	@Test
-	public static void testNotificationAddRemoveValue(LabelableElement fixture) {
+	public static void testNotificationAddRemoveValue(LabelableElement fixture, GRAPH_ATTRIBUTES attribute) {
 		MyListener listener = new MyListener();
 		if (fixture instanceof Notifier) {
 			((Notifier) fixture).addListener(listener);
@@ -37,14 +37,14 @@ public class Helper {
 
 		fixture.addLabel(label);
 		assertEquals(NOTIFICATION_TYPE.ADD, listener.lastEvent.type);
-		assertEquals(GRAPH_ATTRIBUTES.LABEL_LABELS, listener.lastEvent.attribute);
+		assertEquals(attribute, listener.lastEvent.attribute);
 		assertEquals(null, listener.lastEvent.oldValue);
 		assertEquals(label, listener.lastEvent.newValue);
 		assertEquals(fixture, listener.lastEvent.container);
 
 		fixture.removeLabel(label.getNamespace(), label.getName());
 		assertEquals(NOTIFICATION_TYPE.REMOVE, listener.lastEvent.type);
-		assertEquals(GRAPH_ATTRIBUTES.LABEL_LABELS, listener.lastEvent.attribute);
+		assertEquals(attribute, listener.lastEvent.attribute);
 		assertEquals(label, listener.lastEvent.oldValue);
 		assertEquals(null, listener.lastEvent.newValue);
 		assertEquals(fixture, listener.lastEvent.container);

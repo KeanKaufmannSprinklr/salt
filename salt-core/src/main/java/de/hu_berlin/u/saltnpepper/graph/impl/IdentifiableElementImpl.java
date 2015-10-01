@@ -42,6 +42,7 @@ public abstract class IdentifiableElementImpl extends LabelableElementImpl imple
 			getDelegate().setIdentifier(identifier);
 		} else {
 			if (identifier != null) {
+				// if element already has an identifier, remove old identifier
 				if (getIdentifier() != null) {
 					removeLabel(SaltUtil.SALT_NAMESPACE, SaltUtil.LABEL_ID);
 				}
@@ -88,8 +89,8 @@ public abstract class IdentifiableElementImpl extends LabelableElementImpl imple
 			getDelegate().setId(id);
 		} else {
 			if ((id != null) && (!id.isEmpty())) {
-				Identifier identifier = GraphFactory.createIdentifier(this, id);
-				setIdentifier(identifier);
+				// creates a new identifier and adds it to this objects
+				GraphFactory.createIdentifier(this, id);
 			}
 		}
 	}

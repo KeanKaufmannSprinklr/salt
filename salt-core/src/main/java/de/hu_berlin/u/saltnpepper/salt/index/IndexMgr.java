@@ -43,6 +43,8 @@ public interface IndexMgr extends Serializable {
 	 *            type of the keys in the index
 	 * @param valueType
 	 *            type of the values in the index
+	 * @param <K>
+	 * @param <V> 
 	 */
 	public <K, V> void createIndex(String indexId, Class<K> keyType, Class<V> valueType);
 
@@ -62,6 +64,8 @@ public interface IndexMgr extends Serializable {
 	 * @param expectedValuesPerKey
 	 *            number of expected values per key of the index, this parameter
 	 *            is used for initialization optimization.
+	 * @param <K>
+	 * @param <V>
 	 */
 	public <K, V> void createIndex(String indexId, Class<K> keyType, Class<V> valueType, int expectedKeys, int expectedValuesPerKey);
 
@@ -109,6 +113,8 @@ public interface IndexMgr extends Serializable {
 	 * @param value
 	 *            the value to be added to the index
 	 * @return true, if the entry was successfully added, false otherwise
+	 * @param <K>
+	 * @param <V>
 	 */
 	public <K, V> boolean put(String indexId, K key, V value);
 
@@ -123,6 +129,8 @@ public interface IndexMgr extends Serializable {
 	 * @param values
 	 *            the values to be added to the index
 	 * @return true, if the values were added successfully, false otherwise
+	 * @param <K>
+	 * @param <V>
 	 */
 
 	public <K, V> boolean putAll(String indexId, K key, Collection<V> values);
@@ -136,6 +144,8 @@ public interface IndexMgr extends Serializable {
 	 * @param key
 	 *            corresponding key to the returned value
 	 * @return value matching the passed key
+	 * @param <K>
+	 * @param <V>
 	 */
 	public <K, V> V get(String indexId, K key);
 
@@ -148,6 +158,8 @@ public interface IndexMgr extends Serializable {
 	 * @param key
 	 *            corresponding key to the returned set of values
 	 * @return set of values matching the passed key
+	 * @param <K>
+	 * @param <V>
 	 */
 	public <K, V> List<V> getAll(String indexId, K key);
 
@@ -163,6 +175,7 @@ public interface IndexMgr extends Serializable {
 	 *            key corresponding to the value or values to be removed
 	 * @return true if the value or set of values were removed successfully,
 	 *         false otherwise
+	 * @param <K>
 	 */
 	public <K> boolean remove(String indexId, K key);
 
@@ -174,7 +187,10 @@ public interface IndexMgr extends Serializable {
 	 *            identifier of the index
 	 * @param key
 	 *            key corresponding to the value to be removed
+	 * @param value
 	 * @return true if the value were removed successfully, false otherwise
+	 * @param <K>
+	 * @param <V>
 	 */
 	public <K, V> boolean remove(String indexId, K key, V value);
 
@@ -187,6 +203,7 @@ public interface IndexMgr extends Serializable {
 	 * @param key
 	 *            key to be searched for
 	 * @return true when the index contains such a key
+	 * @param <K>
 	 */
 	public <K> boolean containsKey(String indexId, K key);
 
@@ -196,6 +213,7 @@ public interface IndexMgr extends Serializable {
 	 * @param value
 	 *            the value to be removed
 	 * @return true, if the value was removed successfully
+	 * @param <V>
 	 */
 	public <V> boolean removeValue(V value);
 
@@ -206,6 +224,7 @@ public interface IndexMgr extends Serializable {
 	 * @param value
 	 *            the value to be removed
 	 * @return true, if the value was removed successfully
+	 * @param <V>
 	 */
 	public <V> boolean removeValue(String indexId, V value);
 }

@@ -84,7 +84,7 @@ public interface Relation<S extends Node, T extends Node> extends IdentifiableEl
 	 * 
 	 * @return a set of layers containing this relation
 	 */
-	public Set<Layer> getLayers();
+	public Set<? extends Layer> getLayers();
 
 	/**
 	 * Adds this relation to the passed layer.

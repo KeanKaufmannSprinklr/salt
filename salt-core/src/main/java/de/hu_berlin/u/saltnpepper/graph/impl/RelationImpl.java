@@ -159,7 +159,7 @@ public class RelationImpl<S extends Node, T extends Node> extends IdentifiableEl
 
 	/** {@inheritDoc} **/
 	@Override
-	public Set<Layer> getLayers() {
+	public Set<? extends Layer> getLayers() {
 		if (getDelegate() != null) {
 			return (getDelegate().getLayers());
 		}

@@ -30,9 +30,10 @@ public class STextualDSImpl extends SSequentialDSImpl<String, Integer> implement
 	}
 
 	/**
-	 * Initializes an object of type {@link STextualDSImpl}. If {@link #delegate} is not
-	 * null, all functions of this method are delegated to the delegate object.
-	 * Setting {@link #delegate} makes this object to a container.
+	 * Initializes an object of type {@link STextualDSImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
 	 * 
 	 * @param a
 	 *            delegate object of the same type.
@@ -40,6 +41,7 @@ public class STextualDSImpl extends SSequentialDSImpl<String, Integer> implement
 	public STextualDSImpl(Node delegate) {
 		super(delegate);
 	}
+
 	/** {@inheritDoc} **/
 	@Override
 	public String getText() {

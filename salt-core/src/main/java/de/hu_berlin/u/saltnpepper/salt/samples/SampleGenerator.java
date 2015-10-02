@@ -400,10 +400,11 @@ public class SampleGenerator {
 		STextualDS textualDS = null;
 		// creating the primary text depending on the language
 		textualDS = SaltFactory.createSTextualDS();
-		if (LANG_EN.equalsIgnoreCase(language))
+		if (LANG_EN.equalsIgnoreCase(language)) {
 			textualDS.setText(PRIMARY_TEXT_EN);
-		else if (LANG_DE.equalsIgnoreCase(language))
+		} else if (LANG_DE.equalsIgnoreCase(language)) {
 			textualDS.setText(PRIMARY_TEXT_DE);
+		}
 		// adding the text to the document-graph
 		document.getDocumentGraph().addNode(textualDS);
 		// creating the primary text depending on the language

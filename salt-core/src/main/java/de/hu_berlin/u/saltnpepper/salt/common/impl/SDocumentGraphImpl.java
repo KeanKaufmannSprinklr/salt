@@ -15,6 +15,7 @@ import com.google.common.collect.Multimap;
 import de.hu_berlin.u.saltnpepper.graph.Graph;
 import de.hu_berlin.u.saltnpepper.graph.Node;
 import de.hu_berlin.u.saltnpepper.graph.Relation;
+import de.hu_berlin.u.saltnpepper.graph.impl.NodeImpl;
 import de.hu_berlin.u.saltnpepper.salt.SaltFactory;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocument;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocumentGraph;
@@ -149,6 +150,22 @@ public class SDocumentGraphImpl extends SGraphImpl implements SDocumentGraph {
 
 	// ============================ end: handling relations
 	// ============================ start: handling nodes
+	
+	//TODO this is just a test for notification
+	/** {@inheritDoc Graph#addNode(Node)} **/
+	@Override
+	public void addNode(SNode node) {
+		if (node!= null){
+			System.out.println("----> adding node in DocumentGraphImpl: "+node+", type: "+ node.getClass());
+		}
+		if (getDelegate() != null) {
+			basicAddNode(node);
+			getDelegate().addNode(node);
+		} else {
+			super.addNode(node);
+		}
+	}
+	
 	/**
 	 * Calls the super method an puts the given node into a node type index. an
 	 * exception will be thrown.
@@ -158,6 +175,7 @@ public class SDocumentGraphImpl extends SGraphImpl implements SDocumentGraph {
 	 */
 	@Override
 	protected void basicAddNode(SNode node) {
+		System.out.println("SDocumentGraph.basicNode");
 		if (node != null) {
 			// start: create a name if none exists
 			if ((node.getName() == null) || (node.getName().isEmpty())) {
@@ -202,6 +220,8 @@ public class SDocumentGraphImpl extends SGraphImpl implements SDocumentGraph {
 				key = node.getClass();
 			}
 
+			System.out.println("----> key: "+ key);
+			
 			getIndexMgr().put(SaltUtil.IDX_NODETYPE, key, node);
 		}
 	}

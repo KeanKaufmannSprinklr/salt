@@ -26,6 +26,15 @@ public class SampleGraphTest implements Listener {
 		SaltFactory.setFactory(new SaltNotificationFactory());
 		factory.addListener(this);
 		SDocument doc= SaltFactory.createSDocument();
+		SampleGenerator.createPrimaryData(doc);
+		
+		System.out.println("all nodes: "+ doc.getDocumentGraph().getNodes());
+		System.out.println("prim nodes: "+ doc.getDocumentGraph().getTextualDSs());
+		System.out.println("graph opposite: "+ doc.getDocumentGraph().getNodes().get(0).getGraph());
+		
+		System.out.println("first text: "+ doc.getDocumentGraph().getTextualDSs().get(0));
+		
+		
 		SampleGenerator.createSyntaxStructure(doc);		
 	}
 

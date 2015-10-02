@@ -145,6 +145,8 @@ public class GraphImpl<N extends Node, R extends Relation<N, N>, L extends Layer
 	/** {@inheritDoc Graph#addNode(Node)} **/
 	@Override
 	public void addNode(N node) {
+		if (node!= null)
+			System.out.println("----> adding node in GraphImpl: "+node+", type: "+ node.getClass());
 		if (getDelegate() != null) {
 			getDelegate().addNode(node);
 		} else {
@@ -182,6 +184,7 @@ public class GraphImpl<N extends Node, R extends Relation<N, N>, L extends Layer
 	 *            node to be inserted
 	 */
 	protected void basicAddNode(N node) {
+		System.out.println("GraphImpl.basicNode");
 		if (getDelegate() != null && getDelegate() instanceof GraphImpl) {
 			((GraphImpl<N, R, L>) getDelegate()).basicAddNode(node);
 		} else {
@@ -208,6 +211,7 @@ public class GraphImpl<N extends Node, R extends Relation<N, N>, L extends Layer
 				i++;
 			}// if node already exists, create new Id
 				// add node to internal list
+			System.out.println(getClass().getSimpleName()+"casicAddNode: "+ node + ", type"+ node.getClass());
 			nodes.add(node);
 			// add node to id indexes
 			getIndexMgr().put(SaltUtil.IDX_ID_NODES, node.getId(), node);

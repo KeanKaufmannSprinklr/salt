@@ -133,7 +133,7 @@ public class SaltNotificationFactory extends SaltFactoryImpl implements ISaltFac
 
 	@Override
 	public Graph<Node, Relation<Node, Node>, Layer<Node, Relation<Node, Node>>> createGraph() {
-		GraphNotifierImpl<Node, Relation<Node, Node>, Layer<Node, Relation<Node, Node>>> graph = new GraphNotifierImpl();
+		GraphNotifierImpl<Node, Relation<Node, Node>, Layer<Node, Relation<Node, Node>>> graph = new GraphNotifierImpl<Node, Relation<Node, Node>, Layer<Node, Relation<Node, Node>>>();
 		graph.addListener(getListener());
 		return (graph);
 	}
@@ -147,7 +147,7 @@ public class SaltNotificationFactory extends SaltFactoryImpl implements ISaltFac
 
 	@Override
 	public Layer<Node, Relation<Node, Node>> createLayer() {
-		LayerNotifierImpl<Node, Relation<Node, Node>> node = new LayerNotifierImpl();
+		LayerNotifierImpl<Node, Relation<Node, Node>> node = new LayerNotifierImpl<Node, Relation<Node, Node>>();
 		node.addListener(getListener());
 		return (node);
 	}
@@ -278,6 +278,9 @@ public class SaltNotificationFactory extends SaltFactoryImpl implements ISaltFac
 
 	@Override
 	public STextualDS createSTextualDS() {
+		System.out.println("--> create StextualDS");
+		System.out.println("type: "+ new STextualDSImpl(createNode()));
+		System.out.println("type: "+ new STextualDSImpl(createNode()).getClass());
 		return (new STextualDSImpl(createNode()));
 	}
 

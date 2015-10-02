@@ -15,7 +15,7 @@
  *
  *
  */
-package de.hu_berlin.u.saltnpepper.salt.core.impl;
+package de.hu_berlin.u.saltnpepper.salt.util.internal;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;

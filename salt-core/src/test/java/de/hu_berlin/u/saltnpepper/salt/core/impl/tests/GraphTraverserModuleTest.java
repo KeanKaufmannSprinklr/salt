@@ -35,9 +35,9 @@ import de.hu_berlin.u.saltnpepper.salt.core.SGraph;
 import de.hu_berlin.u.saltnpepper.salt.core.SGraph.GRAPH_TRAVERSE_TYPE;
 import de.hu_berlin.u.saltnpepper.salt.core.SNode;
 import de.hu_berlin.u.saltnpepper.salt.core.SRelation;
-import de.hu_berlin.u.saltnpepper.salt.core.impl.GraphTraverserModule;
 import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltException;
 import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltTraverserException;
+import de.hu_berlin.u.saltnpepper.salt.util.internal.GraphTraverserModule;
 
 public class GraphTraverserModuleTest {
 	private GraphTraverserModule fixture = null;

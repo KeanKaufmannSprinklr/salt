@@ -17,15 +17,30 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.semantics.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Label;
 import de.hu_berlin.u.saltnpepper.salt.core.impl.SAnnotationImpl;
 import de.hu_berlin.u.saltnpepper.salt.semantics.SLemmaAnnotation;
 import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 
 @SuppressWarnings("serial")
 public class SLemmaAnnotationImpl extends SAnnotationImpl implements SLemmaAnnotation {
+	/** Initializes an object of type {@link SLemmaAnnotation}. **/
 	public SLemmaAnnotationImpl() {
 		super.setNamespace(SaltUtil.SALT_NAMESPACE);
 		super.setName(SaltUtil.SEMANTICS_LEMMA);
+	}
+
+	/**
+	 * Initializes an object of type {@link SLemmaAnnotation}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SLemmaAnnotationImpl(Label delegate) {
+		super(delegate);
 	}
 
 	/** Calling this method has no effect. **/

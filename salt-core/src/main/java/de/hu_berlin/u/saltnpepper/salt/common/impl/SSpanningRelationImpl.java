@@ -24,7 +24,7 @@ public class SSpanningRelationImpl extends SRelationImpl<SSpan, SToken> implemen
 	 * @param a
 	 *            delegate object of the same type.
 	 */
-	public SSpanningRelationImpl(Relation<SSpan, SToken> delegate) {
+	public SSpanningRelationImpl(Relation delegate) {
 		super(delegate);
 	}
 

@@ -17,15 +17,30 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.semantics.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Label;
 import de.hu_berlin.u.saltnpepper.salt.core.impl.SAnnotationImpl;
 import de.hu_berlin.u.saltnpepper.salt.semantics.SWordAnnotation;
 import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 
 public class SWordAnnotationImpl extends SAnnotationImpl implements SWordAnnotation {
+	/** Initializes an object of type {@link SWordAnnotation}. **/
 	public SWordAnnotationImpl() {
 		super.setNamespace(SaltUtil.SALT_NAMESPACE);
 		super.setName(SaltUtil.SEMANTICS_UNIT);
 		super.setValue(SaltUtil.SEMANTICS_WORD);
+	}
+
+	/**
+	 * Initializes an object of type {@link SWordAnnotation}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SWordAnnotationImpl(Label delegate) {
+		super(delegate);
 	}
 
 	/** Calling this method has no effect. **/

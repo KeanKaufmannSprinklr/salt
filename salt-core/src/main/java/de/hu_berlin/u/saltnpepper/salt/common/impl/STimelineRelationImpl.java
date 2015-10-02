@@ -40,7 +40,7 @@ public class STimelineRelationImpl extends SSequentialRelationImpl<SToken, STime
 	 * @param a
 	 *            delegate object of the same type.
 	 */
-	public STimelineRelationImpl(Relation<SToken, STimeline> delegate) {
+	public STimelineRelationImpl(Relation delegate) {
 		super(delegate);
 	}
 

@@ -25,6 +25,7 @@ import de.hu_berlin.u.saltnpepper.salt.common.SMedialRelation;
 import de.hu_berlin.u.saltnpepper.salt.common.SToken;
 import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltParameterException;
 
+@SuppressWarnings("serial")
 public class SMedialRelationImpl extends SSequentialRelationImpl<SToken, SMedialDS, Double> implements SMedialRelation {
 	/** Initializes an object of type {@link SMedialRelationImpl}. **/
 	public SMedialRelationImpl() {
@@ -39,7 +40,7 @@ public class SMedialRelationImpl extends SSequentialRelationImpl<SToken, SMedial
 	 * @param a
 	 *            delegate object of the same type.
 	 */
-	public SMedialRelationImpl(Relation<SToken, SMedialDS> delegate) {
+	public SMedialRelationImpl(Relation delegate) {
 		super(delegate);
 	}
 

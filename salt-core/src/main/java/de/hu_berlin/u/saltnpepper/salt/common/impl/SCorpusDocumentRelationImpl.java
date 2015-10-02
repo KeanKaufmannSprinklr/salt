@@ -38,7 +38,7 @@ public class SCorpusDocumentRelationImpl extends SRelationImpl<SCorpus, SDocumen
 	 * @param a
 	 *            delegate object of the same type.
 	 */
-	public SCorpusDocumentRelationImpl(Relation<SCorpus, SDocument> delegate) {
+	public SCorpusDocumentRelationImpl(Relation delegate) {
 		super(delegate);
 	}
 } // SCorpusDocumentRelationImpl

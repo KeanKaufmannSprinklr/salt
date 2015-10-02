@@ -9,6 +9,9 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 
 import de.hu_berlin.u.saltnpepper.graph.Graph;
+import de.hu_berlin.u.saltnpepper.graph.Layer;
+import de.hu_berlin.u.saltnpepper.graph.Node;
+import de.hu_berlin.u.saltnpepper.graph.Relation;
 import de.hu_berlin.u.saltnpepper.graph.impl.GraphImpl;
 import de.hu_berlin.u.saltnpepper.salt.core.GraphTraverseHandler;
 import de.hu_berlin.u.saltnpepper.salt.core.SAnnotation;
@@ -37,7 +40,7 @@ public class SGraphImpl extends GraphImpl<SNode, SRelation<SNode, SNode>, SLayer
 	 * @param a
 	 *            delegate object of the same type.
 	 */
-	public SGraphImpl(Graph<SNode, SRelation<SNode, SNode>, SLayer> delegate) {
+	public SGraphImpl(Graph delegate) {
 		super(delegate);
 	}
 

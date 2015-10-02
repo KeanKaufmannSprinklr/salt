@@ -41,7 +41,7 @@ public class SDominanceRelationImpl extends SRelationImpl<SStructure, SStructure
 	 * @param a
 	 *            delegate object of the same type.
 	 */
-	public SDominanceRelationImpl(Relation<SStructure, SStructuredNode> delegate) {
+	public SDominanceRelationImpl(Relation delegate) {
 		super(delegate);
 	}
 

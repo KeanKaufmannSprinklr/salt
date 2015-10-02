@@ -5,6 +5,8 @@ import java.util.Set;
 
 import de.hu_berlin.u.saltnpepper.graph.Label;
 import de.hu_berlin.u.saltnpepper.graph.Layer;
+import de.hu_berlin.u.saltnpepper.graph.Node;
+import de.hu_berlin.u.saltnpepper.graph.Relation;
 import de.hu_berlin.u.saltnpepper.graph.impl.LayerImpl;
 import de.hu_berlin.u.saltnpepper.salt.core.SAnnotation;
 import de.hu_berlin.u.saltnpepper.salt.core.SFeature;
@@ -30,7 +32,7 @@ public class SLayerImpl extends LayerImpl<SNode, SRelation<SNode, SNode>> implem
 	 * @param a
 	 *            delegate object of the same type.
 	 */
-	public SLayerImpl(Layer<SNode, SRelation<SNode, SNode>> delegate) {
+	public SLayerImpl(Layer<Node, Relation<Node, Node>> delegate) {
 		super(delegate);
 	}
 	// =======================================> SAnnotation

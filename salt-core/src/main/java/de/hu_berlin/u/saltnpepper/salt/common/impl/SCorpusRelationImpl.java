@@ -37,7 +37,7 @@ public class SCorpusRelationImpl extends SRelationImpl<SCorpus, SCorpus> impleme
 	 * @param a
 	 *            delegate object of the same type.
 	 */
-	public SCorpusRelationImpl(Relation<SCorpus, SCorpus> delegate) {
+	public SCorpusRelationImpl(Relation delegate) {
 		super(delegate);
 	}
 } // SCorpusRelationImpl

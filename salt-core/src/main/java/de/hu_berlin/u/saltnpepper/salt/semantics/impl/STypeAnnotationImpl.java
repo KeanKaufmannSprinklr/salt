@@ -17,14 +17,29 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.semantics.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Label;
 import de.hu_berlin.u.saltnpepper.salt.core.impl.SAnnotationImpl;
 import de.hu_berlin.u.saltnpepper.salt.semantics.STypeAnnotation;
 import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 
 public class STypeAnnotationImpl extends SAnnotationImpl implements STypeAnnotation {
+	/** Initializes an object of type {@link STypeAnnotation}. **/
 	public STypeAnnotationImpl() {
 		super.setNamespace(SaltUtil.SALT_NAMESPACE);
 		super.setName(SaltUtil.SEMANTICS_TYPE);
+	}
+
+	/**
+	 * Initializes an object of type {@link STypeAnnotation}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public STypeAnnotationImpl(Label delegate) {
+		super(delegate);
 	}
 
 	/** Calling this method has no effect. **/

@@ -30,7 +30,7 @@ public class SRelationImpl<S extends SNode, T extends SNode> extends RelationImp
 	 * @param a
 	 *            delegate object of the same type.
 	 */
-	public SRelationImpl(Relation<S, T> delegate) {
+	public SRelationImpl(Relation delegate) {
 		super(delegate);
 	}
 

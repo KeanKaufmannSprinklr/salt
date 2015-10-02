@@ -17,16 +17,31 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.semantics.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Label;
 import de.hu_berlin.u.saltnpepper.salt.core.impl.SAnnotationImpl;
 import de.hu_berlin.u.saltnpepper.salt.semantics.SSentenceAnnotation;
 import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 
 @SuppressWarnings("serial")
 public class SSentenceAnnotationImpl extends SAnnotationImpl implements SSentenceAnnotation {
+	/** Initializes an object of type {@link SSentenceAnnotation}. **/
 	public SSentenceAnnotationImpl() {
 		super.setNamespace(SaltUtil.SALT_NAMESPACE);
-		super.setName(SaltUtil.SEMANTICS_UNIT);
+		super.setName(SaltUtil.SEMANTICS_CAT);
 		super.setValue(SaltUtil.SEMANTICS_WORD);
+	}
+
+	/**
+	 * Initializes an object of type {@link SSentenceAnnotation}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SSentenceAnnotationImpl(Label delegate) {
+		super(delegate);
 	}
 
 	/** Calling this method has no effect. **/

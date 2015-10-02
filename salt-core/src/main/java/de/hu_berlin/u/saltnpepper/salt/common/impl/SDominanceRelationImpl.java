@@ -18,6 +18,7 @@
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
 import de.hu_berlin.u.saltnpepper.graph.Graph;
+import de.hu_berlin.u.saltnpepper.graph.Relation;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocumentGraph;
 import de.hu_berlin.u.saltnpepper.salt.common.SDominanceRelation;
 import de.hu_berlin.u.saltnpepper.salt.common.SStructure;
@@ -27,6 +28,23 @@ import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltParameterException;
 
 @SuppressWarnings("serial")
 public class SDominanceRelationImpl extends SRelationImpl<SStructure, SStructuredNode> implements SDominanceRelation {
+	/** Initializes an object of type {@link SDominanceRelationImpl}. **/
+	public SDominanceRelationImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SDominanceRelationImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SDominanceRelationImpl(Relation<SStructure, SStructuredNode> delegate) {
+		super(delegate);
+	}
+
 	/** {@inheritDoc} **/
 	@Override
 	public SDocumentGraph getGraph() {

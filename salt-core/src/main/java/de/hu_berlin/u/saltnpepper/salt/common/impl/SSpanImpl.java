@@ -18,6 +18,7 @@
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
 import de.hu_berlin.u.saltnpepper.graph.Graph;
+import de.hu_berlin.u.saltnpepper.graph.Node;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocumentGraph;
 import de.hu_berlin.u.saltnpepper.salt.common.SSpan;
 import de.hu_berlin.u.saltnpepper.salt.common.SStructuredNode;
@@ -26,7 +27,21 @@ import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltParameterException;
 
 @SuppressWarnings("serial")
 public class SSpanImpl extends SNodeImpl implements SSpan, SStructuredNode {
+	/** Initializes an object of type {@link SSpanImpl}. **/
+	public SSpanImpl() {
+	}
 
+	/**
+	 * Initializes an object of type {@link SSpanImpl}. If {@link #delegate} is not
+	 * null, all functions of this method are delegated to the delegate object.
+	 * Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SSpanImpl(Node delegate) {
+		super(delegate);
+	}
 	/** {@inheritDoc} **/
 	@Override
 	public SDocumentGraph getGraph() {

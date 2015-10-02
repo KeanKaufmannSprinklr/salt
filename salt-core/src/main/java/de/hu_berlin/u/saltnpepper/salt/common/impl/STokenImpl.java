@@ -1,7 +1,5 @@
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
-import javax.swing.text.Document;
-
 import de.hu_berlin.u.saltnpepper.graph.Graph;
 import de.hu_berlin.u.saltnpepper.graph.Node;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocumentGraph;
@@ -12,9 +10,10 @@ import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltParameterException;
 
 @SuppressWarnings("serial")
 public class STokenImpl extends SNodeImpl implements SToken, SStructuredNode {
-
+	/** Initializes an object of type {@link STokenImpl}. **/
 	public STokenImpl() {
 	}
+
 	/**
 	 * Initializes an object of type {@link Token}. If {@link #delegate} is not
 	 * null, all functions of this method are delegated to the delegate object.
@@ -26,7 +25,7 @@ public class STokenImpl extends SNodeImpl implements SToken, SStructuredNode {
 	public STokenImpl(Node delegate) {
 		super(delegate);
 	}
-	
+
 	/** {@inheritDoc} **/
 	@Override
 	public SDocumentGraph getGraph() {

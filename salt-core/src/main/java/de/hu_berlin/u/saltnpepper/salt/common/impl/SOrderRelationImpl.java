@@ -18,9 +18,12 @@
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
 import de.hu_berlin.u.saltnpepper.graph.Graph;
+import de.hu_berlin.u.saltnpepper.graph.Relation;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocumentGraph;
+import de.hu_berlin.u.saltnpepper.salt.common.SMedialDS;
 import de.hu_berlin.u.saltnpepper.salt.common.SOrderRelation;
 import de.hu_berlin.u.saltnpepper.salt.common.SStructuredNode;
+import de.hu_berlin.u.saltnpepper.salt.common.SToken;
 import de.hu_berlin.u.saltnpepper.salt.core.SNode;
 import de.hu_berlin.u.saltnpepper.salt.core.impl.SRelationImpl;
 import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltParameterException;
@@ -35,6 +38,22 @@ import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltParameterException;
  */
 @SuppressWarnings("serial")
 public class SOrderRelationImpl extends SRelationImpl<SStructuredNode, SStructuredNode> implements SOrderRelation {
+	/** Initializes an object of type {@link SOrderRelationImpl}. **/
+	public SOrderRelationImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SOrderRelationImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SOrderRelationImpl(Relation<SStructuredNode, SStructuredNode> delegate) {
+		super(delegate);
+	}
 	/** {@inheritDoc} **/
 	@Override
 	public SDocumentGraph getGraph() {

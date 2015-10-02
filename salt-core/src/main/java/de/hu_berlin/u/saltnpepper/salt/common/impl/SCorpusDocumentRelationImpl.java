@@ -17,6 +17,7 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Relation;
 import de.hu_berlin.u.saltnpepper.salt.common.SCorpus;
 import de.hu_berlin.u.saltnpepper.salt.common.SCorpusDocumentRelation;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocument;
@@ -24,5 +25,20 @@ import de.hu_berlin.u.saltnpepper.salt.core.impl.SRelationImpl;
 
 @SuppressWarnings("serial")
 public class SCorpusDocumentRelationImpl extends SRelationImpl<SCorpus, SDocument> implements SCorpusDocumentRelation {
+	/** Initializes an object of type {@link SCorpusDocumentRelationImpl}. **/
+	public SCorpusDocumentRelationImpl() {
+	}
 
+	/**
+	 * Initializes an object of type {@link SCorpusDocumentRelationImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SCorpusDocumentRelationImpl(Relation<SCorpus, SDocument> delegate) {
+		super(delegate);
+	}
 } // SCorpusDocumentRelationImpl

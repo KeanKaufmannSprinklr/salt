@@ -52,6 +52,22 @@ import de.hu_berlin.u.saltnpepper.salt.util.internal.Diff;
 
 @SuppressWarnings("serial")
 public class SDocumentGraphImpl extends SGraphImpl implements SDocumentGraph {
+	/** Initializes an object of type {@link SDocumentGraphImpl}. **/
+	public SDocumentGraphImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SDocumentGraphImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SDocumentGraphImpl(Graph delegate) {
+		super(delegate);
+	}
 
 	/**
 	 * Calls the init of super class and expands its initialization for adding

@@ -18,6 +18,7 @@
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
 import de.hu_berlin.u.saltnpepper.graph.Graph;
+import de.hu_berlin.u.saltnpepper.graph.Node;
 import de.hu_berlin.u.saltnpepper.salt.SaltFactory;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocumentGraph;
 import de.hu_berlin.u.saltnpepper.salt.common.SSequentialDS;
@@ -28,6 +29,22 @@ import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 
 @SuppressWarnings("serial")
 public abstract class SSequentialDSImpl<D, P extends Number> extends SNodeImpl implements SSequentialDS<D, P> {
+	/** Initializes an object of type {@link SSequentialDSImpl}. **/
+	public SSequentialDSImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SSequentialDSImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SSequentialDSImpl(Node delegate) {
+		super(delegate);
+	}
 
 	/** {@inheritDoc} */
 	@Override

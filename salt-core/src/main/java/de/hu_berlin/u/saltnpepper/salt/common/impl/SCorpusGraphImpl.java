@@ -45,6 +45,22 @@ import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 
 @SuppressWarnings("serial")
 public class SCorpusGraphImpl extends SGraphImpl implements SCorpusGraph {
+	/** Initializes an object of type {@link SCorpusGraphImpl}. **/
+	public SCorpusGraphImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SCorpusGraphImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SCorpusGraphImpl(Graph delegate) {
+		super(delegate);
+	}
 
 	/**
 	 * Calls the init of super class and expands its initialization for adding
@@ -283,10 +299,10 @@ public class SCorpusGraphImpl extends SGraphImpl implements SCorpusGraph {
 	@Override
 	public Identifier addDocument(SCorpus corpus, SDocument document) {
 		if (corpus == null) {
-			throw new SaltParameterException("corpus", "addDocument",this.getClass(), "Cannot add the given sDocument, because the given sCorpus is null.");
+			throw new SaltParameterException("corpus", "addDocument", this.getClass(), "Cannot add the given sDocument, because the given sCorpus is null.");
 		}
 		if (document == null) {
-			throw new SaltParameterException("document", "addDocument",this.getClass(), "Cannot add the given sDocument, because it is null.");
+			throw new SaltParameterException("document", "addDocument", this.getClass(), "Cannot add the given sDocument, because it is null.");
 		}
 		if (getNode(corpus.getId()) == null) {
 			throw new SaltInsertionException(this, document, "Cannot add the given sDocument, because the given sCorpus is not already contained in corpus graph.");

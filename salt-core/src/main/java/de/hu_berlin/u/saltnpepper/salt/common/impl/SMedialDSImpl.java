@@ -19,6 +19,7 @@ package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
 import org.eclipse.emf.common.util.URI;
 
+import de.hu_berlin.u.saltnpepper.graph.Node;
 import de.hu_berlin.u.saltnpepper.salt.SaltFactory;
 import de.hu_berlin.u.saltnpepper.salt.common.SMedialDS;
 import de.hu_berlin.u.saltnpepper.salt.core.SFeature;
@@ -26,6 +27,22 @@ import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 
 @SuppressWarnings("serial")
 public class SMedialDSImpl extends SSequentialDSImpl<URI, Double> implements SMedialDS {
+	/** Initializes an object of type {@link SMedialDSImpl}. **/
+	public SMedialDSImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SMedialDSImpl}. If {@link #delegate}
+	 * is not null, all functions of this method are delegated to the delegate
+	 * object. Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SMedialDSImpl(Node delegate) {
+		super(delegate);
+	}
+
 	/** {@inheritDoc} */
 	@Override
 	public URI getMediaReference() {

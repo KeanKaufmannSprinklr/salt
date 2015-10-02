@@ -18,6 +18,7 @@
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
 import de.hu_berlin.u.saltnpepper.graph.Graph;
+import de.hu_berlin.u.saltnpepper.graph.Relation;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocumentGraph;
 import de.hu_berlin.u.saltnpepper.salt.common.STextualDS;
 import de.hu_berlin.u.saltnpepper.salt.common.STextualRelation;
@@ -26,6 +27,23 @@ import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltParameterException;
 
 @SuppressWarnings("serial")
 public class STextualRelationImpl extends SSequentialRelationImpl<SToken, STextualDS, Integer> implements STextualRelation {
+	/** Initializes an object of type {@link STextualRelationImpl}. **/
+	public STextualRelationImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link STextualRelationImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public STextualRelationImpl(Relation<SToken, STextualDS> delegate) {
+		super(delegate);
+	}
+
 	/** {@inheritDoc} **/
 	@Override
 	public SDocumentGraph getGraph() {

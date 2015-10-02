@@ -17,9 +17,25 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Node;
 import de.hu_berlin.u.saltnpepper.salt.common.SCorpus;
 import de.hu_berlin.u.saltnpepper.salt.core.impl.SNodeImpl;
 
 @SuppressWarnings("serial")
 public class SCorpusImpl extends SNodeImpl implements SCorpus {
+	/** Initializes an object of type {@link SCorpusImpl}. **/
+	public SCorpusImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SCorpusImpl}. If {@link #delegate} is not
+	 * null, all functions of this method are delegated to the delegate object.
+	 * Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SCorpusImpl(Node delegate) {
+		super(delegate);
+	}
 }

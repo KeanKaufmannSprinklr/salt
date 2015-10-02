@@ -18,6 +18,7 @@
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
 import de.hu_berlin.u.saltnpepper.graph.Graph;
+import de.hu_berlin.u.saltnpepper.graph.Relation;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocumentGraph;
 import de.hu_berlin.u.saltnpepper.salt.common.STimeline;
 import de.hu_berlin.u.saltnpepper.salt.common.STimelineRelation;
@@ -26,6 +27,23 @@ import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltParameterException;
 
 @SuppressWarnings("serial")
 public class STimelineRelationImpl extends SSequentialRelationImpl<SToken, STimeline, Integer> implements STimelineRelation {
+	/** Initializes an object of type {@link STimelineRelationImpl}. **/
+	public STimelineRelationImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link STimelineRelationImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public STimelineRelationImpl(Relation<SToken, STimeline> delegate) {
+		super(delegate);
+	}
+
 	/** {@inheritDoc} **/
 	@Override
 	public SDocumentGraph getGraph() {

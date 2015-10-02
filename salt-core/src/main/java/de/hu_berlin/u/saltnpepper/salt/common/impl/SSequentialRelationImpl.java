@@ -17,6 +17,7 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Relation;
 import de.hu_berlin.u.saltnpepper.salt.SaltFactory;
 import de.hu_berlin.u.saltnpepper.salt.common.SSequentialRelation;
 import de.hu_berlin.u.saltnpepper.salt.core.SFeature;
@@ -26,6 +27,22 @@ import de.hu_berlin.u.saltnpepper.salt.util.SaltUtil;
 
 @SuppressWarnings("serial")
 public abstract class SSequentialRelationImpl<S extends SNode, T extends SNode, P extends Number> extends SRelationImpl<S, T> implements SSequentialRelation<S, T, P> {
+	/** Initializes an object of type {@link SSequentialRelationImpl}. **/
+	public SSequentialRelationImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SSequentialRelationImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SSequentialRelationImpl(Relation<S, T> delegate) {
+		super(delegate);
+	}
 
 	/** {@inheritDoc} **/
 	@Override

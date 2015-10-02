@@ -18,6 +18,7 @@
 package de.hu_berlin.u.saltnpepper.salt.common.impl;
 
 import de.hu_berlin.u.saltnpepper.graph.Graph;
+import de.hu_berlin.u.saltnpepper.graph.Relation;
 import de.hu_berlin.u.saltnpepper.salt.common.SDocumentGraph;
 import de.hu_berlin.u.saltnpepper.salt.common.SMedialDS;
 import de.hu_berlin.u.saltnpepper.salt.common.SMedialRelation;
@@ -25,6 +26,23 @@ import de.hu_berlin.u.saltnpepper.salt.common.SToken;
 import de.hu_berlin.u.saltnpepper.salt.exceptions.SaltParameterException;
 
 public class SMedialRelationImpl extends SSequentialRelationImpl<SToken, SMedialDS, Double> implements SMedialRelation {
+	/** Initializes an object of type {@link SMedialRelationImpl}. **/
+	public SMedialRelationImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SMedialRelationImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SMedialRelationImpl(Relation<SToken, SMedialDS> delegate) {
+		super(delegate);
+	}
+
 	/** {@inheritDoc} **/
 	@Override
 	public SDocumentGraph getGraph() {

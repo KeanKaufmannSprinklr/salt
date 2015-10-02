@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 
+import de.hu_berlin.u.saltnpepper.graph.Label;
 import de.hu_berlin.u.saltnpepper.graph.impl.LabelImpl;
 import de.hu_berlin.u.saltnpepper.salt.SDATATYPE;
 import de.hu_berlin.u.saltnpepper.salt.SaltFactory;
@@ -20,7 +21,21 @@ import de.hu_berlin.u.saltnpepper.salt.util.internal.SAnnotationContainerHelper;
 
 @SuppressWarnings("serial")
 public abstract class SAbstractAnnotationImpl extends LabelImpl implements SAbstractAnnotation, SAnnotationContainer {
+	/** Initializes an object of type {@link SAbstractAnnotationImpl}. **/
+	public SAbstractAnnotationImpl() {
+	}
 
+	/**
+	 * Initializes an object of type {@link SAbstractAnnotationImpl}. If {@link #delegate} is
+	 * not null, all functions of this method are delegated to the delegate
+	 * object. Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SAbstractAnnotationImpl(Label delegate) {
+		super(delegate);
+	}
 	// ============================= start: SValueType
 	protected SDATATYPE computeSValueType() {
 		if (this.getValue() == null)

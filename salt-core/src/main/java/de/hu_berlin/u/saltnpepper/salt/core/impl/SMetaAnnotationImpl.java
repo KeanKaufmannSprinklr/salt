@@ -17,9 +17,24 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.core.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Label;
 import de.hu_berlin.u.saltnpepper.salt.core.SMetaAnnotation;
 
 @SuppressWarnings("serial")
 public class SMetaAnnotationImpl extends SAbstractAnnotationImpl implements SMetaAnnotation {
+	/** Initializes an object of type {@link SMetaAnnotationImpl}. **/
+	public SMetaAnnotationImpl() {
+	}
 
+	/**
+	 * Initializes an object of type {@link SMetaAnnotationImpl}. If {@link #delegate} is
+	 * not null, all functions of this method are delegated to the delegate
+	 * object. Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SMetaAnnotationImpl(Label delegate) {
+		super(delegate);
+	}
 } // SAnnotationImpl

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 
+import de.hu_berlin.u.saltnpepper.graph.Graph;
 import de.hu_berlin.u.saltnpepper.graph.impl.GraphImpl;
 import de.hu_berlin.u.saltnpepper.salt.core.GraphTraverseHandler;
 import de.hu_berlin.u.saltnpepper.salt.core.SAnnotation;
@@ -24,6 +25,21 @@ import de.hu_berlin.u.saltnpepper.salt.util.internal.SAnnotationContainerHelper;
 
 @SuppressWarnings("serial")
 public class SGraphImpl extends GraphImpl<SNode, SRelation<SNode, SNode>, SLayer> implements SGraph {
+	/** Initializes an object of type {@link SGraphImpl}. **/
+	public SGraphImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SGraphImpl}. If {@link #delegate} is
+	 * not null, all functions of this method are delegated to the delegate
+	 * object. Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SGraphImpl(Graph<SNode, SRelation<SNode, SNode>, SLayer> delegate) {
+		super(delegate);
+	}
 
 	/** {@inheritDoc} **/
 	@Override

@@ -17,9 +17,25 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.core.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Label;
 import de.hu_berlin.u.saltnpepper.salt.core.SProcessingAnnotation;
 
 @SuppressWarnings("serial")
 public class SProcessingAnnotationImpl extends SAbstractAnnotationImpl implements SProcessingAnnotation {
+	/** Initializes an object of type {@link SProcessingAnnotationImpl}. **/
+	public SProcessingAnnotationImpl() {
+	}
 
+	/**
+	 * Initializes an object of type {@link SProcessingAnnotationImpl}. If
+	 * {@link #delegate} is not null, all functions of this method are delegated
+	 * to the delegate object. Setting {@link #delegate} makes this object to a
+	 * container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SProcessingAnnotationImpl(Label delegate) {
+		super(delegate);
+	}
 } // SAnnotationImpl

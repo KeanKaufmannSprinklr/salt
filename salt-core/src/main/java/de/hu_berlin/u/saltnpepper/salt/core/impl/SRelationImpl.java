@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 
+import de.hu_berlin.u.saltnpepper.graph.Relation;
 import de.hu_berlin.u.saltnpepper.graph.impl.RelationImpl;
 import de.hu_berlin.u.saltnpepper.salt.core.SAnnotation;
 import de.hu_berlin.u.saltnpepper.salt.core.SFeature;
@@ -17,6 +18,22 @@ import de.hu_berlin.u.saltnpepper.salt.util.internal.SAnnotationContainerHelper;
 
 @SuppressWarnings("serial")
 public class SRelationImpl<S extends SNode, T extends SNode> extends RelationImpl<S, T> implements SRelation<S, T> {
+	/** Initializes an object of type {@link SRelation}. **/
+	public SRelationImpl() {
+	}
+
+	/**
+	 * Initializes an object of type {@link SRelation}. If {@link #delegate} is
+	 * not null, all functions of this method are delegated to the delegate
+	 * object. Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SRelationImpl(Relation<S, T> delegate) {
+		super(delegate);
+	}
+
 	// =======================================> SAnnotation
 	/** {@inheritDoc} **/
 	@Override

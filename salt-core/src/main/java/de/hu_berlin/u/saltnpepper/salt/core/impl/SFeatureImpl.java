@@ -17,9 +17,24 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.core.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Label;
 import de.hu_berlin.u.saltnpepper.salt.core.SFeature;
 
 @SuppressWarnings("serial")
 public class SFeatureImpl extends SAbstractAnnotationImpl implements SFeature {
+	/** Initializes an object of type {@link SFeatureImpl}. **/
+	public SFeatureImpl() {
+	}
 
-} // SAnnotationImpl
+	/**
+	 * Initializes an object of type {@link SFeatureImpl}. If {@link #delegate}
+	 * is not null, all functions of this method are delegated to the delegate
+	 * object. Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SFeatureImpl(Label delegate) {
+		super(delegate);
+	}
+}

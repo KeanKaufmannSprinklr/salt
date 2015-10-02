@@ -17,9 +17,24 @@
  */
 package de.hu_berlin.u.saltnpepper.salt.core.impl;
 
+import de.hu_berlin.u.saltnpepper.graph.Label;
 import de.hu_berlin.u.saltnpepper.salt.core.SAnnotation;
 
 @SuppressWarnings("serial")
 public class SAnnotationImpl extends SAbstractAnnotationImpl implements SAnnotation {
+	/** Initializes an object of type {@link SAnnotationImpl}. **/
+	public SAnnotationImpl() {
+	}
 
-} // SAnnotationImpl
+	/**
+	 * Initializes an object of type {@link SAnnotationImpl}. If {@link #delegate}
+	 * is not null, all functions of this method are delegated to the delegate
+	 * object. Setting {@link #delegate} makes this object to a container.
+	 * 
+	 * @param a
+	 *            delegate object of the same type.
+	 */
+	public SAnnotationImpl(Label delegate) {
+		super(delegate);
+	}
+}
